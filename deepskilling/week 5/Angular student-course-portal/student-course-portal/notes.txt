@@ -1,0 +1,25 @@
+File-by-file purpose notes (Hands-On 1, Task 1)
+================================================
+
+angular.json       — Workspace config: defines build targets, serve options, test runner config,
+                     and asset/style paths. The budgets under architect>build>configurations>production
+                     control maximumWarning (500kB) and maximumError (1MB) for bundle size checks.
+
+tsconfig.json      — Root TypeScript config: sets strict mode, target ES2022, moduleResolution=bundler,
+                     and Angular-specific compiler options (strictTemplates, strictInjectionParameters).
+
+tsconfig.app.json  — Extends tsconfig.json; scoped to the application build (excludes test types).
+
+tsconfig.spec.json — Extends tsconfig.json; scoped to unit tests (adds jasmine types).
+
+package.json       — Lists all npm dependencies (Angular, NgRx, RxJS) and devDependencies
+                     (CLI, Karma, TypeScript). Defines npm scripts: start, build, test.
+
+src/main.ts        — Application entry point. Calls bootstrapApplication(AppComponent, appConfig)
+                     to start the Angular app using the standalone API (no NgModule needed).
+
+src/app/app.config.ts — Replaces AppModule in modern standalone Angular. Provides router,
+                        HttpClient, NgRx store + effects, and HTTP interceptors for the whole app.
+
+src/index.html     — The single HTML page served to the browser. Contains <app-root> where
+                     Angular mounts the application. All other HTML is generated dynamically.

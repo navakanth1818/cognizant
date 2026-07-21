@@ -1,0 +1,54 @@
+<main>
+  <h1>Enrollment (Reactive Form)</h1>
+
+  <form [formGroup]="enrollForm" (ngSubmit)="onSubmit()">
+
+    <div class="field">
+      <label>Student Name</label>
+      <input formControlName="studentName">
+      <span class="error-msg" *ngIf="enrollForm.get('studentName')?.touched && enrollForm.get('studentName')?.errors?.['required']">Name is required.</span>
+      <span class="error-msg" *ngIf="enrollForm.get('studentName')?.touched && enrollForm.get('studentName')?.errors?.['minlength']">Minimum 3 characters.</span>
+    </div>
+
+    <div class="field">
+      <label>Student Email</label>
+      <input formControlName="studentEmail" type="email">
+      <span class="error-msg" *ngIf="enrollForm.get('studentEmail')?.touched && enrollForm.get('studentEmail')?.errors?.['required']">Email is required.</span>
+      <span class="error-msg" *ngIf="enrollForm.get('studentEmail')?.touched && enrollForm.get('studentEmail')?.errors?.['email']">Enter a valid email.</span>
+      <span class="error-msg" *ngIf="enrollForm.get('studentEmail')?.touched && enrollForm.get('studentEmail')?.errors?.['emailTaken']">Email is already taken.</span>
+    </div>
+
+    <div class="field">
+      <label>Course ID</label>
+      <input formControlName="courseId">
+      <span class="error-msg" *ngIf="enrollForm.get('courseId')?.errors?.['noCourseCode']">Course code starting with XX is not allowed.</span>
+    </div>
+
+    <div class="field">
+      <label>Preferred Semester</label>
+      <select formControlName="preferredSemester">
+        <option value="Odd">Odd</option>
+        <option value="Even">Even</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label><input formControlName="agreeToTerms" type="checkbox"> I agree to the terms</label>
+    </div>
+
+    <!-- H5: FormArray for dynamic additional courses -->
+    <div *ngFor="let ctrl of additionalCourses.controls; let i = index" class="field">
+      <label>Additional Course {{ i + 1 }}</label>
+      <input [formControl]="$any(ctrl)">
+      <button class="btn-danger" type="button" (click)="removeCourse(i)">Remove</button>
+    </div>
+
+    <button class="btn-secondary" type="button" (click)="addCourse()">+ Add Another Course</button>
+
+    <div style="margin-top:1rem">
+      <button class="btn-primary" type="submit" [disabled]="enrollForm.invalid">Submit</button>
+    </div>
+
+    <div class="success-msg" *ngIf="submitted">Enrollment submitted!</div>
+  </form>
+</main>

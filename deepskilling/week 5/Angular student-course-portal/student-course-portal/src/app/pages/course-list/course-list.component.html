@@ -1,0 +1,30 @@
+<main>
+  <h1>Courses</h1>
+
+  <!-- H8: error banner -->
+  <div class="error-banner" *ngIf="error$ | async as err">{{ err }}</div>
+
+  <!-- H3: loading spinner via NgRx loading state -->
+  <div class="loading" *ngIf="loading$ | async">
+    <div class="spinner"></div><p>Loading courses...</p>
+  </div>
+
+  <ng-container *ngIf="courses$ | async as courses">
+    <!-- H3: *ngIf with else block for empty array -->
+    <ng-container *ngIf="courses.length > 0; else noCourses">
+      <div class="course-grid">
+        <!-- H3: *ngFor with trackBy for performance -->
+        <app-course-card
+          *ngFor="let course of courses; trackBy: trackByCourseId"
+          [course]="course"
+          (enrollRequested)="onEnroll($event)"
+          (click)="navigateToDetail(course.id)"
+          style="cursor:pointer">
+        </app-course-card>
+      </div>
+    </ng-container>
+    <ng-template #noCourses><p>No courses available.</p></ng-template>
+  </ng-container>
+
+  <p *ngIf="selectedCourseId" style="margin-top:1rem">Selected course ID: {{ selectedCourseId }}</p>
+</main>

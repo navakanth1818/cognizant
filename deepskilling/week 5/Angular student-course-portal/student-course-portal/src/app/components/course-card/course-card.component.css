@@ -1,0 +1,3 @@
+.card--enrolled { background: #e8eaf6; }
+.card--full { opacity: .85; }
+.expanded { min-height: 180px; }

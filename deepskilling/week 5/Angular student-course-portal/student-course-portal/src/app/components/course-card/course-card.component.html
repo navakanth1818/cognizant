@@ -1,0 +1,24 @@
+<div class="course-card" [ngClass]="cardClasses" [ngStyle]="borderStyle" appHighlight="lightyellow" *ngIf="course">
+  <!-- H3: *ngSwitch badge per gradeStatus -->
+  <ng-container [ngSwitch]="course.gradeStatus">
+    <span *ngSwitchCase="'passed'" class="badge badge-passed">Passed</span>
+    <span *ngSwitchCase="'failed'" class="badge badge-failed">Failed</span>
+    <span *ngSwitchDefault class="badge badge-pending">Pending</span>
+  </ng-container>
+
+  <h3>{{ course.name }}</h3>
+  <p><strong>Code:</strong> {{ course.code }}</p>
+  <!-- H3: custom pipe -->
+  <p><strong>Credits:</strong> {{ course.credits | creditLabel }}</p>
+
+  <button class="btn-secondary" (click)="toggleExpand()">
+    {{ isExpanded ? 'Hide Details' : 'Show Details' }}
+  </button>
+
+  <!-- H9: async pipe reads NgRx enrolled ids -->
+  <ng-container *ngIf="enrolledIds$ | async as ids">
+    <button class="btn-primary" style="margin-left:.5rem" (click)="onEnroll(ids)">
+      {{ ids.includes(course.id) ? 'Unenroll' : 'Enroll' }}
+    </button>
+  </ng-container>
+</div>

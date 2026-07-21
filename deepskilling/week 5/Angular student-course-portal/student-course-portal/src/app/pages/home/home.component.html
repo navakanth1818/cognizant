@@ -1,0 +1,26 @@
+<main>
+  <!-- H2: interpolation -->
+  <h1>{{ portalName }}</h1>
+  <p>Welcome to the Student Course Portal. Browse courses, track grades, and manage your enrollment.</p>
+
+  <!-- H1: stats row -->
+  <div class="stats">
+    <div class="stat-card"><span>{{ courseCount }}</span>Courses Available</div>
+    <div class="stat-card"><span>3</span>Enrolled</div>
+    <div class="stat-card"><span>3.8</span>GPA</div>
+  </div>
+
+  <!-- H2: property binding + event binding -->
+  <button class="btn-primary" [disabled]="!isPortalActive" (click)="onEnrollClick()">Enroll Now</button>
+  <p *ngIf="message" style="margin-top:.75rem;color:green">{{ message }}</p>
+
+  <!-- H2: two-way binding with ngModel -->
+  <div style="margin-top:1.5rem">
+    <!--
+      [property] = one-way (component → DOM): sets DOM property from component value.
+      [(ngModel)] = two-way (DOM ↔ component): shorthand for [ngModel]="prop" (ngModelChange)="prop=$event".
+    -->
+    <input placeholder="Search courses..." [(ngModel)]="searchTerm" style="padding:.5rem;width:300px;border:1px solid #ccc;border-radius:5px">
+    <p>Searching for: {{ searchTerm }}</p>
+  </div>
+</main>

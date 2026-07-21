@@ -1,0 +1,38 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', sans-serif; background: #f5f7fa; color: #333; }
+nav { background: #1a237e; padding: 1rem 2rem; display: flex; gap: 2rem; align-items: center; }
+nav a { color: #fff; text-decoration: none; font-size: 0.95rem; }
+nav a:hover { text-decoration: underline; }
+nav .brand { font-weight: bold; font-size: 1.1rem; margin-right: auto; }
+main { padding: 2rem; max-width: 1100px; margin: 0 auto; }
+h1 { margin-bottom: 1rem; color: #1a237e; }
+h2 { margin-bottom: 0.75rem; }
+.stats { display: flex; gap: 1.5rem; margin: 1.5rem 0; }
+.stat-card { background: #fff; border-radius: 8px; padding: 1rem 1.5rem; box-shadow: 0 1px 4px rgba(0,0,0,.1); text-align: center; }
+.stat-card span { display: block; font-size: 1.8rem; font-weight: bold; color: #1a237e; }
+.course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1.25rem; margin-top: 1rem; }
+.course-card { background: #fff; border-radius: 8px; padding: 1.25rem; box-shadow: 0 1px 4px rgba(0,0,0,.1); border-left: 5px solid #ccc; transition: transform .15s; }
+.course-card:hover { transform: translateY(-2px); }
+.course-card.card--enrolled { border-left-color: #1a237e; }
+.course-card.card--full { opacity: .8; }
+.course-card.expanded { min-height: 180px; }
+.badge { display: inline-block; padding: .2rem .6rem; border-radius: 12px; font-size: .78rem; font-weight: bold; margin-bottom: .5rem; }
+.badge-passed { background: #c8e6c9; color: #2e7d32; }
+.badge-failed { background: #ffcdd2; color: #c62828; }
+.badge-pending { background: #e0e0e0; color: #616161; }
+button { cursor: pointer; padding: .45rem 1rem; border: none; border-radius: 5px; font-size: .9rem; }
+.btn-primary { background: #1a237e; color: #fff; }
+.btn-secondary { background: #e0e0e0; color: #333; margin-left: .5rem; }
+.btn-danger { background: #c62828; color: #fff; margin-left: .5rem; }
+form { background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.1); max-width: 520px; }
+form .field { margin-bottom: 1rem; }
+form label { display: block; margin-bottom: .3rem; font-weight: 500; }
+form input, form select { width: 100%; padding: .5rem; border: 1px solid #ccc; border-radius: 5px; font-size: .95rem; }
+form input.ng-invalid.ng-touched { border-color: red; }
+form input.ng-valid.ng-touched { border-color: green; }
+.error-msg { color: red; font-size: .82rem; margin-top: .2rem; }
+.success-msg { background: #c8e6c9; color: #2e7d32; padding: .75rem 1rem; border-radius: 5px; margin-top: 1rem; }
+.loading { text-align: center; padding: 2rem; color: #888; }
+.spinner { display: inline-block; width: 32px; height: 32px; border: 4px solid #ccc; border-top-color: #1a237e; border-radius: 50%; animation: spin .7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.error-banner { background: #ffcdd2; color: #c62828; padding: .75rem 1rem; border-radius: 5px; margin-bottom: 1rem; }
